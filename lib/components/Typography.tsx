@@ -1,9 +1,11 @@
+import React from "react";
 import {ReactNode} from "react";
 
 interface ITypography {
-    children: ReactNode
+    children: ReactNode,
+    size: number
 }
 
-export const Typography = ({children}: ITypography) => {
-    return <p className={'ipao-typo'}>{children}</p>
+export const Typography = ({children, size}: ITypography) => {
+    return <p className={'ipao-typo'}>{children}, {size}</p>
 }
