@@ -4,20 +4,22 @@ import { cn } from "@/lib/utils"
 import {Slot} from "@radix-ui/react-slot";
 
 
-const typographyVariants = cva("font-bold", {
+const typographyVariants = cva("...", {
   variants: {
     variant: {
-      bold: "font-bold",
-      h1: "text-[40px] leading-[56px]",
-      h2: "text-[32px] leading-[48px]",
-      h3: "text-[24px] leading-[36px]",
-      h4: "text-[20px] leading-[32px]",
-      h5: "text-[18px] leading-[28.62px]",
-      p: "mb-0",
-      small: "text-[14px]",
-      body: "text-[14px] leading-[24px]",
+      heading1: "text-[40px] leading-[56px] font-bold",
+      heading2: "text-[32px] leading-[48px] font-bold",
+      heading3: "text-[24px] leading-[36px] font-bold",
+      heading4: "text-[20px] leading-[32px] font-bold",
+      body1: " text-[16px] leading-[24px]",
+      body2: " text-[14px] leading-[24px]",
+      caption: "text-[12px] leading-[20px]",
       mutedText: "text-sm text-muted-foreground",
     },
+    weight: {
+      bold: "font-bold",
+      regular: "font-normal",
+    }
   },
 });
 
@@ -27,15 +29,13 @@ const variantElementMap: Record<
   NonNullable<VariantPropType["variant"]>,
   string
 > = {
-  bold: "div",
-  h1: "div",
-  h2: "div",
-  h3: "div",
-  h4: "div",
-  h5: "div",
-  p: "div",
-  body:"div",
-  small: "div",
+  heading1: "div",
+  heading2: "div",
+  heading3: "div",
+  heading4: "div",
+  body1: "div",
+  body2: "div",
+  caption: "div",
   mutedText: "div",
 };
 
@@ -48,11 +48,11 @@ export interface TypographyProps
 
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-    ({className, variant, as, asChild, ...props}, ref) => {
+    ({className, variant, weight, as, asChild, ...props}, ref) => {
         const Comp = asChild ? Slot : as ?? (variant ? variantElementMap[variant] : undefined) ?? "div"
         return (
             <Comp
-                className={cn(typographyVariants({variant, className}))}
+                className={cn(typographyVariants({variant, weight, className}))}
                 ref={ref}
                 {...props}
             />
