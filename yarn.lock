@@ -5805,10 +5805,10 @@ lru-cache@^6.0.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
   integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
 
-lucide-react@^0.299.0:
-  version "0.299.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.299.0.tgz#1be021536661f6a3f960b0c3a59e8d68613944b0"
-  integrity sha512-59MiDzDzFI/efHhb4n0vGdXelMNwou7JlAFvVS4boA1G/7aYU7garPciYo73CODzkhrhz0JOgdtSTPSe5dMrlQ==
+lucide-react@^0.302.0:
+  version "0.302.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.302.0.tgz#ba5d1f90d2348cf564991fb06966560ee2edc54b"
+  integrity sha512-JZX+1fjpqxvQmEgItvPOAwRlqf0Eg9dSZMxljA2/V2M6dluOhQCPBhewIlSJWgkNu0M36kViOgmTAMnDaAMOFw==
 
 lz-string@^1.5.0:
   version "1.5.0"
@@ -7350,10 +7350,10 @@ synchronous-promise@^2.0.15:
   resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.17.tgz#38901319632f946c982152586f2caf8ddc25c032"
   integrity sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==
 
-tailwind-merge@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.1.0.tgz#541b407e0ec255651e92571d96b685e48f01999c"
-  integrity sha512-l11VvI4nSwW7MtLSLYT4ldidDEUwQAMWuSHk7l4zcXZDgnCRa0V3OdCwFfM7DCzakVXMNRwAeje9maFFXT71dQ==
+tailwind-merge@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.2.0.tgz#b6bb1c63ef26283c9e6675ba237df83bbd554688"
+  integrity sha512-SqqhhaL0T06SW59+JVNfAqKdqLs0497esifRrZ7jOaefP3o64fdFNDMrAQWZFMxTLJPiHVjRLUywT8uFz1xNWQ==
   dependencies:
     "@babel/runtime" "^7.23.5"
 
