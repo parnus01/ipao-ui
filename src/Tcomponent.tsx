@@ -1,6 +1,4 @@
-import { Button } from "./components/ui/button"
-import { Typography } from '../lib/components/Typography';
-
+import {Typography} from "../lib/main.ts";
 
 
 function Tcomponent() {
