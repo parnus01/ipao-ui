@@ -1,15 +1,37 @@
-import type {ButtonHTMLAttributes} from "react";
-
 import type {Meta, Story} from "@storybook/react";
-
-import {Typography} from './Typography'
+import {ITypography, Typography} from './Typography'
+import {MantineProvider, rem} from "@mantine/core";
 
 export default {
     title: "Typography",
-} as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
+} as Meta<ITypography>;
 
-const Template: Story<ButtonHTMLAttributes<HTMLButtonElement>> = (args) => (
-    <Typography {...args}>No</Typography>
+const Template: Story<ITypography> = (args) => (
+
+    <MantineProvider
+        theme={{
+            fontSizes: {
+                xs: rem('16px'),
+                sm: rem('20px'),
+                md: rem('24px'),
+                lg: rem('32px'),
+                xl: rem('40px'),
+            },
+            lineHeights: {
+                xs: '24px',
+                sm: '32px',
+                md: '36px',
+                lg: '48px',
+                xl: '56px',
+            }
+        }}
+    >
+        <Typography {...args}>My Heading1</Typography>
+    </MantineProvider>
 );
 
 export const Heading1 = Template.bind({});
+
+Heading1.args = {
+    category: 'heading1'
+};
