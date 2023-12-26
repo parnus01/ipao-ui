@@ -1,18 +1,17 @@
-import type {ButtonHTMLAttributes} from "react";
+import type { ButtonHTMLAttributes } from "react";
 
-import type {Meta, Story} from "@storybook/react";
-import Typography, {TypographyProps} from "./Typography";
-
+import type { Meta, Story } from "@storybook/react";
+import { Typography, TypographyProps } from "./Typography";
 
 export default {
-    title: "Typography",
+  title: "Typography",
 } as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
 
 const Template: Story<TypographyProps> = (args) => (
-    <Typography {...args}>Heading 1 text</Typography>
+  <Typography {...args}>Heading 1 text</Typography>
 );
 
 export const Heading1 = Template.bind({});
 Heading1.args = {
-    variant: 'heading1'
-}
+  variant: "heading1",
+};
