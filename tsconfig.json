@@ -26,6 +26,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "lib/components/Typography/DropdownMenu/dropdowntest.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

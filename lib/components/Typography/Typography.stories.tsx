@@ -2,9 +2,11 @@ import type { ButtonHTMLAttributes } from "react";
 
 import type { Meta, Story } from "@storybook/react";
 import { Typography, TypographyProps } from "./Typography";
+import React from "react";
 
 export default {
   title: "Typography",
+  component: Typography
 } as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
 
 const Template: Story<TypographyProps> = (args) => (
@@ -20,7 +22,50 @@ const Template: Story<TypographyProps> = (args) => (
   </Typography>
 );
 
-export const SampleText = Template.bind({});
-SampleText.args = {
+export const Heading1 = Template.bind({});
+Heading1.args = {
   variant: "heading1",
+  weight: "regular",
+};
+
+export const Heading2 = Template.bind({});
+Heading2.args = {
+  variant: "heading2",
+  weight: "regular",
+};
+
+export const Heading3 = Template.bind({});
+Heading3.args = {
+  variant: "heading3",
+  weight: "regular",
+};
+
+export const Heading4 = Template.bind({});
+Heading4.args = {
+  variant: "heading4",
+  weight: "regular",
+};
+
+export const Body1 = Template.bind({});
+Body1.args = {
+  variant: "body1",
+  weight: "regular",
+};
+
+export const Body2 = Template.bind({});
+Body2.args = {
+  variant: "body2",
+  weight: "regular",
+};
+
+export const Bold = Template.bind({});
+Bold.args = {
+  variant: "body1",
+  weight: "bold",
+};
+
+export const Caption = Template.bind({});
+Caption.args = {
+  variant: "caption",
+  weight: "regular",
 };
