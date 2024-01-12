@@ -1,14 +1,13 @@
 import type { ButtonHTMLAttributes } from "react";
 
-import type { Meta } from "@storybook/react";
-import { DropdownMenuCheckboxes } from "./dropdown-checkbox"
-import React from "react";
+import type { Meta, Story } from "@storybook/react";
+import { DropdownMenuCheckboxes, Dropdowntopic } from "./dropdown-checkbox"
 
 export default {
   title: "DropdownCheckbox",
 } as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
 
-const Template = (args) => (
+const Template: Story<Dropdowntopic> = (args) => (
   <DropdownMenuCheckboxes {...args}>
     Dropdown-checkbox
   </DropdownMenuCheckboxes>

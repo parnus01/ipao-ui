@@ -1,8 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 
-import type { Meta } from "@storybook/react";
-import { DropdownAction } from "./dropdown-action"
-import React from "react";
+import type { Meta, Story } from "@storybook/react";
+import { DropdownAction, Dropdowntopic } from "./dropdown-action"
 import { Activity } from 'lucide-react';
 
 
@@ -10,7 +9,7 @@ export default {
     title: "DropdownAction",
 } as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
 
-const Template = (args) => (
+const Template: Story<Dropdowntopic> = (args) => (
     <DropdownAction {...args} />
 );
 
