@@ -2,7 +2,6 @@ import type { ButtonHTMLAttributes } from "react";
 
 import type { Meta, Story } from "@storybook/react";
 import { Typography, TypographyProps } from "./Typography";
-import React from "react";
 
 export default {
   title: "Typography",

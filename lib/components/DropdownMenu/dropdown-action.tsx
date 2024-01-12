@@ -19,7 +19,7 @@ export interface actionList {
     isDisable?: boolean
 }
 
-interface Dropdowntopic {
+export interface Dropdowntopic {
     value: actionList[] | actionList[][],
     size: number | string
 }
@@ -42,21 +42,21 @@ export function DropdownAction({ value, size }: Dropdowntopic) {
         );
     }
 
-    const checkValueType = (inputData: any, index: number) => {
+    const checkValueType = (inputData: any, keyindex: number) => {
         const readType = inputData.constructor;
         if (readType == Array) {
             let result: any[] = [];
-            if (index != 0) {
-                result.push(<DropdownMenuSeparator key={index} />)
+            if (keyindex != 0) {
+                result.push(<DropdownMenuSeparator key={keyindex} />)
             }
             for (let j = 0; j < inputData.length; j++) {
-                let temp = dropdownItem(inputData[j], index);
+                let temp = dropdownItem(inputData[j], keyindex);
                 // console.log(arrayKeys);
                 result.push(temp);
             }
             return result;
         }
-        return dropdownItem(inputData, index)
+        return dropdownItem(inputData, keyindex)
     }
 
     return (

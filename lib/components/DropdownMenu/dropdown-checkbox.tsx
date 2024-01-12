@@ -13,11 +13,13 @@ import { Settings } from "lucide-react";
 
 import { ReactNode, useState } from "react";
 
-interface Dropdowntopic {
+
+export interface Dropdowntopic {
   children: ReactNode,
   value: any[],
   multiple?: boolean
 }
+
 
 export function DropdownMenuCheckboxes({ children, value, multiple }: Dropdowntopic) {
 
