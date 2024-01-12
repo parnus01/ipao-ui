@@ -1,16 +1,16 @@
 import type { ButtonHTMLAttributes } from "react";
 
 import type { Meta, Story } from "@storybook/react";
-import { DropdownMenuCheckboxes, Dropdowntopic } from "./dropdown-checkbox"
+import { DropdownMenuCheckbox, Dropdowntopic } from "./dropdown-checkbox"
 
 export default {
   title: "DropdownCheckbox",
 } as Meta<ButtonHTMLAttributes<HTMLButtonElement>>;
 
 const Template: Story<Dropdowntopic> = (args) => (
-  <DropdownMenuCheckboxes {...args}>
+  <DropdownMenuCheckbox {...args}>
     Dropdown-checkbox
-  </DropdownMenuCheckboxes>
+  </DropdownMenuCheckbox>
 );
 
 export const SampleChoice = Template.bind({});

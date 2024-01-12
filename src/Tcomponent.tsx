@@ -1,5 +1,5 @@
 import { Typography } from '../lib/components/Typography/Typography';
-import { DropdownMenuCheckboxes } from '../lib/components/DropdownMenu/dropdown-checkbox';
+import { DropdownMenuCheckbox } from '../lib/components/DropdownMenu/dropdown-checkbox';
 import { DropdownAction, actionList } from '../lib/components/DropdownMenu/dropdown-action';
 import { Activity } from 'lucide-react';
 
@@ -77,10 +77,10 @@ function Tcomponent() {
             <Typography variant='caption'>caption</Typography>
             {/* <DropdownMenuDemo>smt</DropdownMenuDemo> */}
             <br />
-            <DropdownMenuCheckboxes value={choice}>Dropdown-menu-checkbox</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice2}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice} multiple={true}>Dropdown-menu-checkbox</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice2} multiple={true}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckboxes>
+            <DropdownMenuCheckbox value={choice}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={choice2}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={choice} multiple={true}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={choice2} multiple={true}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
             {/* <DropdownAction value={choice3} size={32} /> */}
             <DropdownAction value={choice4} size={"32px"} />
         </>
