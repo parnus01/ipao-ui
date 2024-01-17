@@ -30,7 +30,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./dropdown-menu"
-import React from "react"
 
 export function DropdownMenuDemo() {
   return (
