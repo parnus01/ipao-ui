@@ -24,7 +24,7 @@ export interface Dropdowntopic {
   size: number | string;
 }
 
-const DropdownAction = ({ value, size }: Dropdowntopic) => {
+export const DropdownAction = ({ value, size }: Dropdowntopic) => {
   const dropdownItem = (item: actionList, index: number) => {
     const itemKey = item.label.concat(index.toString());
     return (
@@ -71,4 +71,4 @@ const DropdownAction = ({ value, size }: Dropdowntopic) => {
   );
 };
 
-export { DropdownAction };
+
