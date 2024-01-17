@@ -70,5 +70,3 @@ export const DropdownAction = ({ value, size }: Dropdowntopic) => {
     </DropdownMenu>
   );
 };
-
-export { DropdownAction };

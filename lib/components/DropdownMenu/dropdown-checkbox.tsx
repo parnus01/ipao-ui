@@ -25,7 +25,7 @@ export interface Dropdowntopic {
   multiple?: boolean;
 }
 
-const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
+export const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
   const [showValue, setShowValue] = useState<string[]>([]);
   const [showOneValue, setShowOneValue] = useState<string>("");
   const multipleValue: boolean = multiple ? true : false;
@@ -48,7 +48,7 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
   };
 
 
-  const checkboxItem = (item: any, key: string, checkMultiple: boolean) => {
+ const checkboxItem = (item: any, key: string, checkMultiple: boolean) => {
     if (checkMultiple) {
       return (
         <DropdownMenuCheckboxItemMultiple
@@ -76,7 +76,7 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
       );
     }
   };
-  };
+  
 
   const checkValueType = (
     inputData: any,
@@ -110,6 +110,4 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
       </DropdownMenuContent>
     </DropdownMenu>
   )
-}
-
-export { DropdownMenuCheckbox };
+  }
