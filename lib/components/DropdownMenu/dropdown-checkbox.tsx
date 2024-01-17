@@ -7,15 +7,21 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuCheckboxItemMultiple
 } from "./dropdown-menu";
-
-import { Settings } from "lucide-react";
 
 import { ReactNode, useState } from "react";
 
+export interface choiceList {
+  itemName: string;
+  icon?: ReactNode;
+  label?: string;
+  isDisable?: boolean;
+}
+
 export interface Dropdowntopic {
   children: ReactNode;
-  value: any[];
+  value: choiceList[] | choiceList[][];
   multiple?: boolean;
 }
 
@@ -33,32 +39,39 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
         setShowValue([...showValue, item]);
       }
     } else {
-      setShowOneValue(item);
+      if (showOneValue.includes(item)) {
+        setShowOneValue("");
+      } else {
+        setShowOneValue(item);
+      }
     }
   };
 
-  const checkboxItem = (item: string, keys: string, checkMultiple: boolean) => {
+
+  const checkboxItem = (item: any, key: string, checkMultiple: boolean) => {
     if (checkMultiple) {
       return (
-        <DropdownMenuCheckboxItem
+        <DropdownMenuCheckboxItemMultiple
           checked={showValue.includes(item)}
           onCheckedChange={() => handleOnCheck(item, checkMultiple)}
-          key={keys}
+          key={key}
+          disabled = {item.isDisable}
           onSelect={(e: Event) => e.preventDefault()}
         >
-          <Settings className="mr-2 h-4 w-4" />
-          <span>{item}</span>
-        </DropdownMenuCheckboxItem>
+          <span>{item.itemName}</span>
+        </DropdownMenuCheckboxItemMultiple>
       );
     } else {
       return (
         <DropdownMenuCheckboxItem
-          checked={showOneValue.includes(item)}
-          onCheckedChange={() => handleOnCheck(item, checkMultiple)}
-          key={keys}
+          checked={showOneValue.includes(item.itemName)}
+          onCheckedChange={() => handleOnCheck(item.itemName, checkMultiple)}
+          key={key}
+          disabled = {item.isDisable}
+          // onSelect={(e: Event) => e.preventDefault()}
+          className={showOneValue.includes(item.itemName) ? "active:bg-blue-100 text-blue-600 bg-blue-100 focus:text-blue-600 font-bold" : "hover:bg-accent"}
         >
-          <Settings className="mr-2 h-4 w-4" />
-          <span>{item}</span>
+          <span>{item.itemName}</span>
         </DropdownMenuCheckboxItem>
       );
     }
@@ -66,27 +79,24 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
 
   const checkValueType = (
     inputData: any,
-    i: number,
+    index: number,
     checkMultiple: boolean,
   ) => {
-    const readType = typeof inputData;
-    const cName = "dropdown-menu-";
-    if (readType == "object") {
+    const readType = inputData.constructor;
+    if (readType == Array) {
       let result: any[] = [];
-      let stringKey = (i + 1).toString();
-      if (i != 0) {
-        result.push(<DropdownMenuSeparator />);
+      if (index != 0) {
+        const multipleKey: string = "seperator-".concat(index.toString());
+        result.push(<DropdownMenuSeparator key={multipleKey} />);
       }
       for (let j = 0; j < inputData.length; j++) {
-        let arrayKeys = stringKey.concat(j.toString());
-        const dpName = cName.concat(arrayKeys);
-        let temp = checkboxItem(inputData[j], dpName, checkMultiple);
+        let temp = checkboxItem(inputData[j], j.toString(), checkMultiple);
         // console.log(arrayKeys);
         result.push(temp);
       }
       return result;
     }
-    return checkboxItem(inputData, cName.concat(i.toString()), checkMultiple);
+    return checkboxItem(inputData, index.toString(), checkMultiple);
   };
 
   return (

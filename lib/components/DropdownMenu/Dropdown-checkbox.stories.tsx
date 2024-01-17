@@ -2,6 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 
 import type { Meta, Story } from "@storybook/react";
 import { DropdownMenuCheckbox, Dropdowntopic } from "./dropdown-checkbox"
+import { Activity } from 'lucide-react';
 
 export default {
   title: "DropdownCheckbox",
@@ -13,20 +14,53 @@ const Template: Story<Dropdowntopic> = (args) => (
   </DropdownMenuCheckbox>
 );
 
-export const SampleChoice = Template.bind({});
-SampleChoice.args = {
-  value: ['1', '2', '3', '4', '5', '6'],
+let exampleData1 = [
+  {
+      itemName: "choice1",
+      label: "label1"
+  },
+  {
+      itemName: "choice2",
+      icon: <Activity />,
+      label: "label2"
+  },
+]
+
+let exampleData2 = [
+  [
+      {
+          itemName: "choice1",
+          label: "label1"
+      },
+      {
+          itemName: "choice2",
+          icon: <Activity />,
+          label: "label2",
+      }
+  ],
+  [
+      {
+          itemName: "choice3",
+          label: "label3",
+          isDisable: true
+      },
+      {
+          itemName: "choice4",
+          label: "label4"
+      }
+  ]
+]
+
+
+export const SingleSelect = Template.bind({});
+SingleSelect.args = {
+  value: exampleData1,
   multiple: false,
 };
 
-export const WithSeperator = Template.bind({});
-WithSeperator.args = {
-  value: [['1', '2', '3'], ['4', '5', '6']],
-  multiple: false,
-};
-
-export const ChooseMultiple = Template.bind({});
-ChooseMultiple.args = {
-  value: ['1', '2', '3', '4', '5', '6'],
+export const MultipleSelect = Template.bind({});
+MultipleSelect.args = {
+  value: exampleData2,
   multiple: true,
 };
+
