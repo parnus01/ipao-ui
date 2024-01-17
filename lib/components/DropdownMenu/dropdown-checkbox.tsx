@@ -76,6 +76,7 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
       );
     }
   };
+  };
 
   const checkValueType = (
     inputData: any,
@@ -108,7 +109,7 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
         {value.map((item, i) => checkValueType(item, i, multipleValue))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
 export { DropdownMenuCheckbox };
