@@ -1,5 +1,5 @@
 import { Typography } from '../lib/components/Typography/Typography';
-import { DropdownMenuCheckboxes } from '../lib/components/DropdownMenu/dropdown-checkbox';
+import { DropdownMenuCheckbox, choiceList } from '../lib/components/DropdownMenu/dropdown-checkbox';
 import { DropdownAction, actionList } from '../lib/components/DropdownMenu/dropdown-action';
 import { Activity } from 'lucide-react';
 
@@ -18,9 +18,42 @@ function Tcomponent() {
     const label3 = "label-3";
     const label4 = "label-4";
 
-    let choice: Array<string> = ['1', '2', '3', '4', '5', '6']
-    let choice2: Array<Array<string>> = [['1', '2', '3'], ['4', '5', '6']]
-    let choice3: actionList[] = [
+    let dropdown1: choiceList[] = [
+        {
+          itemName: "choice1",
+          label: "label1"
+        },
+        {
+          itemName: "choice2",
+          icon: icon2,
+          label: "label2"
+        }
+      ]
+    let dropdown2: choiceList[][] = [
+        [
+            {
+                itemName: "choice1",
+                label: "label1"
+              },
+              {
+                itemName: "choice2",
+                icon: icon2,
+                label: "label2"
+              }
+        ],
+        [
+          {
+            itemName: "choice3",
+            label: "label3",
+            "isDisable": true
+          },
+          {
+            itemName: "choice4",
+            label: "label4"
+          }
+        ]
+      ]
+    let action1: actionList[] = [
         {
             itemName: "choice1",
             onActionClick: () => onClickTest(1),
@@ -34,7 +67,7 @@ function Tcomponent() {
             label: label2
         },
     ]
-    let choice4: actionList[][] = [
+    let action2: actionList[][] = [
         [
             {
                 itemName: "choice1",
@@ -77,12 +110,12 @@ function Tcomponent() {
             <Typography variant='caption'>caption</Typography>
             {/* <DropdownMenuDemo>smt</DropdownMenuDemo> */}
             <br />
-            <DropdownMenuCheckboxes value={choice}>Dropdown-menu-checkbox</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice2}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice} multiple={true}>Dropdown-menu-checkbox</DropdownMenuCheckboxes>
-            <DropdownMenuCheckboxes value={choice2} multiple={true}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckboxes>
-            {/* <DropdownAction value={choice3} size={32} /> */}
-            <DropdownAction value={choice4} size={"32px"} />
+            <DropdownMenuCheckbox value={dropdown1}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={dropdown2}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={dropdown1} multiple={true}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox value={dropdown2} multiple={true}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
+            <DropdownAction value={action1} size={32} />
+            <DropdownAction value={action2} size={"32px"} />
         </>
     )
 }

@@ -48,4 +48,3 @@ dropdownAction.args = {
     value: exampleData,
     size: 32
 };
-
