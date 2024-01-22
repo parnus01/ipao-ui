@@ -13,19 +13,19 @@ import {
 import { ReactNode, useState } from "react";
 
 export interface choiceList {
-  itemName: string;
+  value: string;
   icon?: ReactNode;
-  label?: string;
+  label: string;
   isDisable?: boolean;
 }
 
 export interface Dropdowntopic {
   children: ReactNode;
-  value: choiceList[] | choiceList[][];
+  values: choiceList[] | choiceList[][];
   multiple?: boolean;
 }
 
-const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
+const DropdownMenuCheckbox = ({ children, values, multiple }: Dropdowntopic) => {
   const [showValue, setShowValue] = useState<string[]>([]);
   const [showOneValue, setShowOneValue] = useState<string>("");
   const multipleValue: boolean = multiple ? true : false;
@@ -52,26 +52,26 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
     if (checkMultiple) {
       return (
         <DropdownMenuCheckboxItemMultiple
-          checked={showValue.includes(item)}
-          onCheckedChange={() => handleOnCheck(item, checkMultiple)}
+          checked={showValue.includes(item.value)}
+          onCheckedChange={() => handleOnCheck(item.value, checkMultiple)}
           key={key}
           disabled = {item.isDisable}
           onSelect={(e: Event) => e.preventDefault()}
         >
-          <span>{item.itemName}</span>
+          <span>{item.label}</span>
         </DropdownMenuCheckboxItemMultiple>
       );
     } else {
       return (
         <DropdownMenuCheckboxItem
-          checked={showOneValue.includes(item.itemName)}
-          onCheckedChange={() => handleOnCheck(item.itemName, checkMultiple)}
+          checked={showOneValue.includes(item.value)}
+          onCheckedChange={() => handleOnCheck(item.value, checkMultiple)}
           key={key}
           disabled = {item.isDisable}
           // onSelect={(e: Event) => e.preventDefault()}
-          className={showOneValue.includes(item.itemName) ? "active:bg-blue-100 text-blue-600 bg-blue-100 focus:text-blue-600 font-bold" : "hover:bg-accent"}
+          className={showOneValue.includes(item.value) ? "active:bg-blue-100 text-blue-600 bg-blue-100 focus:text-blue-600 font-bold" : "hover:bg-accent"}
         >
-          <span>{item.itemName}</span>
+          <span>{item.label}</span>
         </DropdownMenuCheckboxItem>
       );
     }
@@ -105,7 +105,7 @@ const DropdownMenuCheckbox = ({ children, value, multiple }: Dropdowntopic) => {
         <Button variant="outline">{children}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        {value.map((item, i) => checkValueType(item, i, multipleValue))}
+        {values.map((item, i) => checkValueType(item, i, multipleValue))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -16,11 +16,11 @@ const Template: Story<Dropdowntopic> = (args) => (
 
 let exampleData1 = [
   {
-      itemName: "choice1",
+      value: "choice1",
       label: "label1"
   },
   {
-      itemName: "choice2",
+      value: "choice2",
       icon: <Activity />,
       label: "label2"
   },
@@ -29,23 +29,23 @@ let exampleData1 = [
 let exampleData2 = [
   [
       {
-          itemName: "choice1",
+          value: "choice1",
           label: "label1"
       },
       {
-          itemName: "choice2",
+          value: "choice2",
           icon: <Activity />,
           label: "label2",
       }
   ],
   [
       {
-          itemName: "choice3",
+          value: "choice3",
           label: "label3",
           isDisable: true
       },
       {
-          itemName: "choice4",
+          value: "choice4",
           label: "label4"
       }
   ]
@@ -54,13 +54,13 @@ let exampleData2 = [
 
 export const SingleSelect = Template.bind({});
 SingleSelect.args = {
-  value: exampleData1,
+  values: exampleData1,
   multiple: false,
 };
 
 export const MultipleSelect = Template.bind({});
 MultipleSelect.args = {
-  value: exampleData2,
+  values: exampleData2,
   multiple: true,
 };
 
