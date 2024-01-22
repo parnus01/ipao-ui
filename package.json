@@ -1,7 +1,7 @@
 {
   "name": "ipao-ui",
   "private": false,
-  "version": "0.0.1-rc5",
+  "version": "0.0.1-rc6",
   "type": "module",
   "main": "dist/ipao-ui.js",
   "types": "dist/main.d.ts",
