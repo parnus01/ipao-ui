@@ -1,5 +1,5 @@
 import { Typography } from '../lib/components/Typography/Typography';
-import { DropdownMenuCheckbox, choiceList } from '../lib/components/DropdownMenu/dropdown-checkbox';
+import { DropdownMenuCheckbox } from '../lib/components/DropdownMenu/dropdown-checkbox';
 import { DropdownAction, actionList } from '../lib/components/DropdownMenu/dropdown-action';
 import { Activity } from 'lucide-react';
 import { DropdownSelect } from '../lib/components/DropdownMenu/dropdown-select'
@@ -24,6 +24,14 @@ function Tcomponent() {
         console.log(index);
     }
 
+    const handleApply = (result: string[]) => {
+        console.log(result);
+    }
+
+    const handleCancle = (result: string[]) => {
+        console.log(result);
+    }
+
 
     const icon1 = "";
     const icon2 = <Activity />
@@ -39,9 +47,12 @@ function Tcomponent() {
         },
         {
             value: "choice2",
-            icon: icon2,
             label: "label2"
-        }
+        },
+        {
+            value: "choice3",
+            label: "label3",
+        },
     ]
     let dropdown2 = [
 
@@ -59,7 +70,7 @@ function Tcomponent() {
         {
             value: "choice3",
             label: "label3",
-            "isDisable": true,
+            disabled: true,
             isSeparate: true
         },
         {
@@ -125,8 +136,14 @@ function Tcomponent() {
             <Typography variant='caption'>caption</Typography>
             {/* <DropdownMenuDemo>smt</DropdownMenuDemo> */}
             <br />
-            <DropdownMenuCheckbox options={dropdown1} value={"Dropdown-menu-checkbox-checkall"} check_all />
-            <DropdownMenuCheckbox options={dropdown1} value={"Dropdown-menu-checkbox"} />
+            <DropdownMenuCheckbox 
+                options={dropdown1} 
+                value={"Dropdown-menu-checkbox-checkall"} 
+                check_all 
+                allSelectedText={"Handle selected all"} 
+                onApply={handleApply} 
+                onCancle={handleCancle} 
+            />
             <DropdownAction value={action1} size={32} />
             <DropdownAction value={action2} size={"32px"} />
             <DropdownSelect

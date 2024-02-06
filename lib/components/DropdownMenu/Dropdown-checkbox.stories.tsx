@@ -2,7 +2,6 @@ import type { ButtonHTMLAttributes } from "react";
 
 import type { Meta, Story } from "@storybook/react";
 import { DropdownMenuCheckbox, Dropdowntopic } from "./dropdown-checkbox"
-import { Activity } from 'lucide-react';
 
 export default {
   title: "DropdownCheckbox",
@@ -14,6 +13,7 @@ const Template: Story<Dropdowntopic> = (args) => (
   </DropdownMenuCheckbox>
 );
 
+
 let exampleData1 = [
   {
       value: "choice1",
@@ -21,46 +21,37 @@ let exampleData1 = [
   },
   {
       value: "choice2",
-      icon: <Activity />,
       label: "label2"
+  },
+  {
+      value: "choice3",
+      label: "label3",
   },
 ]
 
-let exampleData2 = [
-  [
-      {
-          value: "choice1",
-          label: "label1"
-      },
-      {
-          value: "choice2",
-          icon: <Activity />,
-          label: "label2",
-      }
-  ],
-  [
-      {
-          value: "choice3",
-          label: "label3",
-          isDisable: true
-      },
-      {
-          value: "choice4",
-          label: "label4"
-      }
-  ]
-]
+const handleApply = (result: string[]) => {
+  alert(result);
+}
+const handleCancle = (result: string[]) => {
+  alert("Cancle");
+}
 
-
-export const SingleSelect = Template.bind({});
-SingleSelect.args = {
-  values: exampleData1,
-  multiple: false,
+export const checkbox = Template.bind({});
+checkbox.args = {
+  options: exampleData1,
+  value: "Dropdown-menu-checkbox" ,
+  check_all: false,
+  allSelectedText: "Handle selected all",
+  onApply: handleApply,
+  onCancle: handleCancle
 };
-
-export const MultipleSelect = Template.bind({});
-MultipleSelect.args = {
-  values: exampleData2,
-  multiple: true,
+export const checkboxCheckAll = Template.bind({});
+checkboxCheckAll.args = {
+  options: exampleData1,
+  value: "Dropdown-menu-checkbox-checkall" ,
+  check_all: true,
+  allSelectedText: "Handle selected all",
+  onApply: handleApply,
+  onCancle: handleCancle
 };
 

@@ -1,4 +1,4 @@
-import * as React from "react"
+// import * as React from "react"
 
 import {
     Select,
@@ -27,7 +27,6 @@ export interface Dropdowntopic {
     onSelectChange?: (e: any) => void;
 }
 
-
 export function DropdownSelect(props: Dropdowntopic) {
     const {
         value = '',
@@ -35,7 +34,6 @@ export function DropdownSelect(props: Dropdowntopic) {
         options = [],
         onSelectChange,
     } = props;
-
 
     const selectItem = (item: any, key: string) => {
         let result: any[] = [];
@@ -54,28 +52,6 @@ export function DropdownSelect(props: Dropdowntopic) {
         )
         return result;
     }
-
-    // const checkValueType = (
-    //     inputData: any,
-    //     index: number
-    // ) => {
-    //     const readType = inputData.constructor;
-    //     if (readType == Array) {
-    //         let result: any[] = [];
-    //         if (index != 0) {
-    //             const multipleKey: string = "separator-".concat(index.toString());
-    //             result.push(<SelectSeparator key={multipleKey} />);
-    //         }
-    //         for (let j = 0; j < inputData.length; j++) {
-
-    //             let temp = selectItem(inputData[j], j.toString());
-    //             result.push(temp);
-
-    //         }
-    //         return result;
-    //     }
-    //     return selectItem(inputData, index.toString());
-    // };
 
     return (
         <Select onValueChange={onSelectChange} defaultValue={defaultValue} >

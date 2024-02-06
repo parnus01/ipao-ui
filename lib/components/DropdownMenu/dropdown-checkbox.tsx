@@ -13,7 +13,6 @@ import { ReactNode, useEffect, useState } from "react";
 
 export interface choiceList {
   value: any;
-  icon?: ReactNode;
   label: string;
   isDisable?: boolean;
 }
@@ -36,18 +35,14 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     value = '',
     options = [],
     onApply,
-    placeholder = '',
     onCancle,
     allSelectedText = '',
-    label = '',
     check_all,
   } = props;
-
 
   const [showValue, setShowValue] = useState<string[]>([]);
   const defaultAlltext = "Select All";
   const [open,setOpen] = useState(false);
-
   let optionValues: Array<string> = options.map(data => data.value);
   let isCheckAll = false;
   if(check_all != null){
@@ -55,17 +50,12 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   }
   const [checkAllFlag, setCheckAllFlag] = useState<boolean>(isCheckAll);
 
-
   useEffect(() => {
     if(showValue.length == options.length){
       setCheckAllFlag(true);
     }else if(checkAllFlag){
       setShowValue(optionValues);
     }
-    // if(check_all != null){
-    //   setCheckAllFlag(check_all);
-    //   console.log(checkAllFlag);
-    // }
   },[showValue, checkAllFlag]);
 
   const handleOnCheck = (item: string) => {
@@ -77,7 +67,6 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
       setShowValue([...showValue, item]);
     }
   };
-
 
   const checkboxItem = (item: any, key: number) => {
     return (
@@ -112,7 +101,6 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     return tempAllText;
   }
 
-
   const handleReset = () => {
     setCheckAllFlag(false);
     setShowValue([]);
@@ -131,10 +119,6 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     }
     setOpen(false);
   }
-
-  // const handleTest = () => {
-  //   console.log(showValue);
-  // }
 
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
