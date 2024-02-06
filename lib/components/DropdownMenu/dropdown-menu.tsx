@@ -124,13 +124,13 @@ const DropdownMenuCheckboxItemMultiple = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-none py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-none py-1.5 pl-12 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3 w-3 items-center justify-center"><Checkbox checked={checked} /></span>
+    <span className="absolute left-4 flex h-3 w-3 items-center justify-center"><Checkbox checked={checked} /></span>
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ))
