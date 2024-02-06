@@ -3,109 +3,159 @@
 import { Button } from "../button";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItemMultiple
 } from "./dropdown-menu";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export interface choiceList {
-  value: string;
+  value: any;
   icon?: ReactNode;
   label: string;
   isDisable?: boolean;
 }
 
 export interface Dropdowntopic {
-  children: ReactNode;
-  values: choiceList[] | choiceList[][];
-  multiple?: boolean;
+  value?: ReactNode;
+  options: choiceList[];
+  onApply?: Function;
+  placeholder?: string;
+  allStatus?: boolean;
+  onCancle?: any;
+  allSelectedText?: string;
+  label?: string;
+  check_all?: boolean;
 }
 
-const DropdownMenuCheckbox = ({ children, values, multiple }: Dropdowntopic) => {
+const DropdownMenuCheckbox = (props: Dropdowntopic) => {
+
+  const {
+    value = '',
+    options = [],
+    onApply,
+    placeholder = '',
+    onCancle,
+    allSelectedText = '',
+    label = '',
+    check_all,
+  } = props;
+
+
   const [showValue, setShowValue] = useState<string[]>([]);
-  const [showOneValue, setShowOneValue] = useState<string>("");
-  const multipleValue: boolean = multiple ? true : false;
+  const defaultAlltext = "Select All";
+  const [open,setOpen] = useState(false);
 
-  const handleOnCheck = (item: string, checkMultiple: boolean) => {
-    if (checkMultiple) {
-      if (showValue.includes(item)) {
-        const newValue = showValue.filter((f) => f !== item);
-        setShowValue(newValue);
-      } else {
-        setShowValue([...showValue, item]);
-      }
+  let optionValues: Array<string> = options.map(data => data.value);
+  let isCheckAll = false;
+  if(check_all != null){
+    isCheckAll = check_all;
+  }
+  const [checkAllFlag, setCheckAllFlag] = useState<boolean>(isCheckAll);
+
+
+  useEffect(() => {
+    if(showValue.length == options.length){
+      setCheckAllFlag(true);
+    }else if(checkAllFlag){
+      setShowValue(optionValues);
+    }
+    // if(check_all != null){
+    //   setCheckAllFlag(check_all);
+    //   console.log(checkAllFlag);
+    // }
+  },[showValue, checkAllFlag]);
+
+  const handleOnCheck = (item: string) => {
+    if (showValue.includes(item)) {
+      const newValue = showValue.filter((f) => f !== item);
+      setShowValue(newValue);
+      setCheckAllFlag(false);
     } else {
-      if (showOneValue.includes(item)) {
-        setShowOneValue("");
-      } else {
-        setShowOneValue(item);
-      }
+      setShowValue([...showValue, item]);
     }
   };
 
 
-  const checkboxItem = (item: any, key: string, checkMultiple: boolean) => {
-    if (checkMultiple) {
-      return (
-        <DropdownMenuCheckboxItemMultiple
-          checked={showValue.includes(item.value)}
-          onCheckedChange={() => handleOnCheck(item.value, checkMultiple)}
-          key={key}
-          disabled = {item.isDisable}
-          onSelect={(e: Event) => e.preventDefault()}
-        >
-          <span>{item.label}</span>
-        </DropdownMenuCheckboxItemMultiple>
-      );
+  const checkboxItem = (item: any, key: number) => {
+    return (
+      <DropdownMenuCheckboxItemMultiple
+        checked={showValue.includes(item.value)}
+        onCheckedChange={() => handleOnCheck(item.value)}
+        key={key}
+        disabled={item.isDisable}
+        onSelect={(e: Event) => e.preventDefault()}
+      >
+        <span>{item.label}</span>
+      </DropdownMenuCheckboxItemMultiple>
+    );
+  };
+
+  const handleSelectedAll = () => {
+    if (!checkAllFlag) {
+      setShowValue(optionValues);
     } else {
-      return (
-        <DropdownMenuCheckboxItem
-          checked={showOneValue.includes(item.value)}
-          onCheckedChange={() => handleOnCheck(item.value, checkMultiple)}
-          key={key}
-          disabled = {item.isDisable}
-          // onSelect={(e: Event) => e.preventDefault()}
-          className={showOneValue.includes(item.value) ? "active:bg-blue-100 text-blue-600 bg-blue-100 focus:text-blue-600 font-bold" : "hover:bg-accent"}
-        >
-          <span>{item.label}</span>
-        </DropdownMenuCheckboxItem>
-      );
+      setShowValue([]);
     }
-  };
+    setCheckAllFlag(!checkAllFlag);
+  }
 
-  const checkValueType = (
-    inputData: any,
-    index: number,
-    checkMultiple: boolean,
-  ) => {
-    const readType = inputData.constructor;
-    if (readType == Array) {
-      let result: any[] = [];
-      if (index != 0) {
-        const multipleKey: string = "seperator-".concat(index.toString());
-        result.push(<DropdownMenuSeparator key={multipleKey} />);
-      }
-      for (let j = 0; j < inputData.length; j++) {
-        let temp = checkboxItem(inputData[j], j.toString(), checkMultiple);
-        // console.log(arrayKeys);
-        result.push(temp);
-      }
-      return result;
+  const handleAllText = () => {
+    let tempAllText = "";
+    if (allSelectedText != '') {
+      tempAllText = allSelectedText;
+    } else {
+      tempAllText = defaultAlltext;
     }
-    return checkboxItem(inputData, index.toString(), checkMultiple);
-  };
+    return tempAllText;
+  }
+
+
+  const handleReset = () => {
+    setCheckAllFlag(false);
+    setShowValue([]);
+  }
+
+  const handleCancle = () => {
+    if(onCancle){
+      onCancle([]);
+    }
+      setOpen(false);
+  }
+
+  const handleApply = () => {
+    if(onApply){
+      onApply(showValue);
+    }
+    setOpen(false);
+  }
+
+  // const handleTest = () => {
+  //   console.log(showValue);
+  // }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={setOpen} open={open}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{children}</Button>
+        <Button variant="outline" aria-placeholder={"smt"}>{value}</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        {values.map((item, i) => checkValueType(item, i, multipleValue))}
+      <DropdownMenuContent className="w-60">
+        <DropdownMenuCheckboxItemMultiple
+            checked={checkAllFlag}
+            onCheckedChange={() => handleSelectedAll()}
+            key={"allStatusChecked"}
+            onSelect={(e: Event) => e.preventDefault()}
+          >
+            <span>{handleAllText()}</span>
+        </DropdownMenuCheckboxItemMultiple>
+        <DropdownMenuSeparator />
+        {options.map((item, i) => checkboxItem(item, i))}
+        {/* <Button variant="ghost" onClick={handleTest}>test</Button> */}
+        <Button variant="ghost" onClick={handleReset}>Reset</Button>
+        <Button variant="secondary" onClick={handleCancle}>Cancle</Button>
+        <Button onClick={handleApply}>Apply</Button>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -2,15 +2,29 @@ import { Typography } from '../lib/components/Typography/Typography';
 import { DropdownMenuCheckbox, choiceList } from '../lib/components/DropdownMenu/dropdown-checkbox';
 import { DropdownAction, actionList } from '../lib/components/DropdownMenu/dropdown-action';
 import { Activity } from 'lucide-react';
+import { DropdownSelect } from '../lib/components/DropdownMenu/dropdown-select'
+import { useState } from 'react';
+import { Button } from '../lib/components/button'
 
 
 
 function Tcomponent() {
 
+    const [smt, setSmt] = useState("choice4");
+
+    const handleChange = (newVal: any) => {
+        setSmt(newVal);
+    }
+
+    const valuetest = () => {
+        console.log(smt);
+    }
 
     const onClickTest = (index: number) => {
-        alert(index);
+        console.log(index);
     }
+
+
     const icon1 = "";
     const icon2 = <Activity />
     const label1 = "label-1";
@@ -18,41 +32,42 @@ function Tcomponent() {
     const label3 = "label-3";
     const label4 = "label-4";
 
-    let dropdown1: choiceList[] = [
+    let dropdown1 = [
         {
-          value: "choice1",
-          label: "label1"
+            value: "choice1",
+            label: "label1"
         },
         {
             value: "choice2",
-          icon: icon2,
-          label: "label2"
+            icon: icon2,
+            label: "label2"
         }
-      ]
-    let dropdown2: choiceList[][] = [
-        [
-            {
-                value: "choice1",
-                label: "label1"
-              },
-              {
-                value: "choice2",
-                icon: icon2,
-                label: "label2"
-              }
-        ],
-        [
-          {
+    ]
+    let dropdown2 = [
+
+        {
+            value: "choice1",
+            label: "label1",
+        },
+        {
+            value: "choice2",
+            icon: icon2,
+            label: "label2"
+        }
+        ,
+
+        {
             value: "choice3",
             label: "label3",
-            "isDisable": true
-          },
-          {
+            "isDisable": true,
+            isSeparate: true
+        },
+        {
             value: "choice4",
             label: "label4"
-          }
-        ]
-      ]
+        }
+
+    ]
     let action1: actionList[] = [
         {
             itemName: "choice1",
@@ -110,12 +125,23 @@ function Tcomponent() {
             <Typography variant='caption'>caption</Typography>
             {/* <DropdownMenuDemo>smt</DropdownMenuDemo> */}
             <br />
-            <DropdownMenuCheckbox values={dropdown1}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
-            <DropdownMenuCheckbox values={dropdown2}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
-            <DropdownMenuCheckbox values={dropdown1} multiple={true}>Dropdown-menu-checkbox</DropdownMenuCheckbox>
-            <DropdownMenuCheckbox values={dropdown2} multiple={true}>Dropdown-menu-checkbox-seperator</DropdownMenuCheckbox>
+            <DropdownMenuCheckbox options={dropdown1} value={"Dropdown-menu-checkbox-checkall"} check_all />
+            <DropdownMenuCheckbox options={dropdown1} value={"Dropdown-menu-checkbox"} />
             <DropdownAction value={action1} size={32} />
             <DropdownAction value={action2} size={"32px"} />
+            <DropdownSelect
+                onSelectChange={handleChange}
+                options={dropdown2}
+                value='select2-testDropdown'
+            />
+            <DropdownSelect
+                onSelectChange={handleChange}
+                options={dropdown2}
+                value='select3-testDefaultValue'
+                defaultValue={smt}
+            />
+            <p>{smt}</p>
+            <Button variant="outline" onClick={valuetest}>Test</Button>
         </>
     )
 }
