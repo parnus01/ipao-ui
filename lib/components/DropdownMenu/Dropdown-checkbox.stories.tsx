@@ -32,7 +32,7 @@ let exampleData1 = [
 const handleApply = (result: string[]) => {
   alert(result);
 }
-const handleCancle = (result: string[]) => {
+const handleCancle = () => {
   alert("Cancle");
 }
 
