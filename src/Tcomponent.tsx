@@ -138,7 +138,6 @@ function Tcomponent() {
             <br />
             <DropdownMenuCheckbox 
                 options={dropdown1} 
-                value={"Dropdown-menu-checkbox-checkall"} 
                 check_all 
                 allSelectedText={"Handle selected all"} 
                 onApply={handleApply} 

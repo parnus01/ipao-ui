@@ -9,7 +9,7 @@ import {
   DropdownMenuCheckboxItemMultiple
 } from "./dropdown-menu";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface choiceList {
   value: any;
@@ -17,7 +17,7 @@ export interface choiceList {
 }
 
 export interface Dropdowntopic {
-  value?: ReactNode;
+  value?: string;
   options: choiceList[];
   onApply?: Function;
   placeholder?: string;
@@ -31,7 +31,6 @@ export interface Dropdowntopic {
 const DropdownMenuCheckbox = (props: Dropdowntopic) => {
 
   const {
-    value = '',
     options = [],
     onApply,
     onCancle,
@@ -103,7 +102,8 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   const handleShowText = () => {
     if(showValue.length > 0 && showValue.length !== options.length){
       return showValue.map((data) => data.label).join(', ');
-    }else{
+    }
+    else{
       return handleAllText();
     }
   }
