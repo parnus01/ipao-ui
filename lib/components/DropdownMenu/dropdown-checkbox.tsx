@@ -14,7 +14,6 @@ import { ReactNode, useEffect, useState } from "react";
 export interface choiceList {
   value: any;
   label: string;
-  isDisable?: boolean;
 }
 
 export interface Dropdowntopic {
@@ -40,10 +39,10 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     check_all,
   } = props;
 
-  const [showValue, setShowValue] = useState<string[]>([]);
+  const [showValue, setShowValue] = useState<choiceList[]>([]);
   const defaultAlltext = "Select All";
   const [open,setOpen] = useState(false);
-  let optionValues: Array<string> = options.map(data => data.value);
+  let optionValues: Array<choiceList> = options;
   let isCheckAll = false;
   if(check_all != null){
     isCheckAll = check_all;
@@ -58,7 +57,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     }
   },[showValue, checkAllFlag]);
 
-  const handleOnCheck = (item: string) => {
+  const handleOnCheck = (item: choiceList) => {
     if (showValue.includes(item)) {
       const newValue = showValue.filter((f) => f !== item);
       setShowValue(newValue);
@@ -71,8 +70,8 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   const checkboxItem = (item: any, key: number) => {
     return (
       <DropdownMenuCheckboxItemMultiple
-        checked={showValue.includes(item.value)}
-        onCheckedChange={() => handleOnCheck(item.value)}
+        checked={showValue.includes(item)}
+        onCheckedChange={() => handleOnCheck(item)}
         key={key}
         disabled={item.isDisable}
         onSelect={(e: Event) => e.preventDefault()}
@@ -101,6 +100,14 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     return tempAllText;
   }
 
+  const handleShowText = () => {
+    if(showValue.length > 0 && showValue.length !== options.length){
+      return showValue.map((data) => data.label).join(', ');
+    }else{
+      return handleAllText();
+    }
+  }
+
   const handleReset = () => {
     setCheckAllFlag(false);
     setShowValue([]);
@@ -123,7 +130,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" aria-placeholder={"smt"}>{value}</Button>
+        <Button variant="outline">{handleShowText()}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-60">
         <DropdownMenuCheckboxItemMultiple
@@ -136,7 +143,6 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
         </DropdownMenuCheckboxItemMultiple>
         <DropdownMenuSeparator />
         {options.map((item, i) => checkboxItem(item, i))}
-        {/* <Button variant="ghost" onClick={handleTest}>test</Button> */}
         <Button variant="ghost" onClick={handleReset}>Reset</Button>
         <Button variant="secondary" onClick={handleCancle}>Cancle</Button>
         <Button onClick={handleApply}>Apply</Button>
