@@ -11,6 +11,8 @@ import {
 
 import { useEffect, useState } from "react";
 
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 export interface choiceList {
   value: any;
   label: string;
@@ -47,6 +49,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     isCheckAll = check_all;
   }
   const [checkAllFlag, setCheckAllFlag] = useState<boolean>(isCheckAll);
+  const [isApplyDisable, setIsApplyDisable] = useState<boolean>(false);
 
   useEffect(() => {
     if(showValue.length == options.length){
@@ -54,7 +57,12 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     }else if(checkAllFlag){
       setShowValue(optionValues);
     }
-  },[showValue, checkAllFlag]);
+    if(showValue.length > 0){
+      setIsApplyDisable(false);
+    }else if(showValue.length == 0){
+      setIsApplyDisable(true);
+    }
+  },[showValue, checkAllFlag, isApplyDisable]);
 
   const handleOnCheck = (item: choiceList) => {
     if (showValue.includes(item)) {
@@ -83,8 +91,10 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   const handleSelectedAll = () => {
     if (!checkAllFlag) {
       setShowValue(optionValues);
+      setIsApplyDisable(false);
     } else {
       setShowValue([]);
+      setIsApplyDisable(true);
     }
     setCheckAllFlag(!checkAllFlag);
   }
@@ -111,6 +121,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
   const handleReset = () => {
     setCheckAllFlag(false);
     setShowValue([]);
+    setIsApplyDisable(true);
   }
 
   const handleCancle = () => {
@@ -129,10 +140,13 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
 
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">{handleShowText()}</Button>
+      <DropdownMenuTrigger asChild className="w-full min-w-[17rem] max-w-[19rem]">
+        <Button variant="outline" className="flex justify-between">
+          <div className="truncate">{handleShowText()}</div>
+          <div>{open? <ChevronUp /> : <ChevronDown />}</div>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-60">
+      <DropdownMenuContent>
         <DropdownMenuCheckboxItemMultiple
             checked={checkAllFlag}
             onCheckedChange={() => handleSelectedAll()}
@@ -143,9 +157,17 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
         </DropdownMenuCheckboxItemMultiple>
         <DropdownMenuSeparator />
         {options.map((item, i) => checkboxItem(item, i))}
-        <Button variant="ghost" onClick={handleReset}>Reset</Button>
-        <Button variant="secondary" onClick={handleCancle}>Cancle</Button>
-        <Button onClick={handleApply}>Apply</Button>
+        <div className="flex justify-between">
+          <div className="">
+            <Button variant="ghost" className="rounded-[32px] " onClick={handleReset}>Clear All</Button>
+          </div>
+          <div className="">
+            <Button variant="secondary" className="rounded-[32px]" onClick={handleCancle}>Cancle</Button>
+            <Button variant="default" onClick={handleApply} className="rounded-[32px]" disabled={isApplyDisable}>Apply</Button>
+          </div>
+        </div>
+        
+        
       </DropdownMenuContent>
     </DropdownMenu>
   );
