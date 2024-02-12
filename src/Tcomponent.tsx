@@ -43,15 +43,15 @@ function Tcomponent() {
     let dropdown1 = [
         {
             value: "choice1",
-            label: "label1"
+            label: "label1-short"
         },
         {
             value: "choice2",
-            label: "label2"
+            label: "label2-long"
         },
         {
             value: "choice3",
-            label: "label3",
+            label: "label3-longgggggggggggggggggggggggg",
         },
     ]
     let dropdown2 = [
