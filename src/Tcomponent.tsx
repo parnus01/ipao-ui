@@ -153,6 +153,12 @@ function Tcomponent() {
             <DropdownSelect
                 onSelectChange={handleChange}
                 options={dropdown2}
+                value='select2-firstItemBorder'
+                firstRowBorderBottom = {true}
+            />
+            <DropdownSelect
+                onSelectChange={handleChange}
+                options={dropdown2}
                 value='select3-testDefaultValue'
                 defaultValue={smt}
             />

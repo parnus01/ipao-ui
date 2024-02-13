@@ -61,7 +61,8 @@ defaultSelect.args = {
     onSelectChange: handleDefaultChange,
     options: exampleData1,
     value: 'select3-testDefaultValue',
-    defaultValue: defaultValue
+    defaultValue: defaultValue,
+    firstRowBorderBottom: true
 };
 
 
