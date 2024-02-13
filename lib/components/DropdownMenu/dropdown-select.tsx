@@ -25,6 +25,7 @@ export interface Dropdowntopic {
     defaultValue?: any;
     options: optionValue[];
     onSelectChange?: (e: any) => void;
+    firstRowBorderBottom? : boolean;
 }
 
 export function DropdownSelect(props: Dropdowntopic) {
@@ -33,9 +34,10 @@ export function DropdownSelect(props: Dropdowntopic) {
         defaultValue = '',
         options = [],
         onSelectChange,
+        firstRowBorderBottom = false,
     } = props;
 
-    const selectItem = (item: any, key: string) => {
+    const selectItem = (item: any, key: number) => {
         let result: any[] = [];
         if(item.isSeparate){
             let seperatorKeys = "separator-" + key;
@@ -49,7 +51,11 @@ export function DropdownSelect(props: Dropdowntopic) {
             >
                 {item.label}
             </SelectItem>
-        )
+        );
+        if(firstRowBorderBottom && key==0){
+            result.push(<SelectSeparator key={"firstRowBorderBottom"} />)
+        }
+
         return result;
     }
 
@@ -60,7 +66,7 @@ export function DropdownSelect(props: Dropdowntopic) {
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
-                    {options.map((item, i) => selectItem(item, i.toString()))}
+                    {options.map((item, i) => selectItem(item, i))}
                 </SelectGroup>
             </SelectContent>
             

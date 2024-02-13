@@ -57,11 +57,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
     }else if(checkAllFlag){
       setShowValue(optionValues);
     }
-    if(showValue.length > 0){
-      setIsApplyDisable(false);
-    }else if(showValue.length == 0){
-      setIsApplyDisable(true);
-    }
+    setIsApplyDisable(showValue.length === 0);
   },[showValue, checkAllFlag, isApplyDisable]);
 
   const handleOnCheck = (item: choiceList) => {
@@ -143,7 +139,7 @@ const DropdownMenuCheckbox = (props: Dropdowntopic) => {
       <DropdownMenuTrigger asChild className="w-full min-w-[17rem] max-w-[19rem]">
         <Button variant="outline" className="flex justify-between">
           <div className="truncate">{handleShowText()}</div>
-          <div>{open? <ChevronUp /> : <ChevronDown />}</div>
+          <div>{open? <ChevronUp className="h-4 w-4 opacity-50 " /> : <ChevronDown className="h-4 w-4 opacity-50 " />}</div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
